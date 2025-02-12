@@ -21,7 +21,7 @@ interface AddSongModalProps {
   genreId: string;
 }
 
-interface SongFormData {
+export type SongFormData = {
   songName: string;
   movieName: string;
   singerName: string;
@@ -29,7 +29,7 @@ interface SongFormData {
   actualPitch: string;
   practisedPitch?: string;
   notes?: string;
-}
+};
 
 export default function AddSongModal({
   isOpen,
