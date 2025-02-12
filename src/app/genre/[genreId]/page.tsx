@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useParams, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Loader2 } from "lucide-react";
 import {
@@ -24,13 +24,7 @@ interface Song {
   notes?: string;
 }
 
-interface GenreData {
-  songs: Song[];
-  title: string;
-}
-
 export default function GenrePage() {
-  const params = useParams();
   const searchParams = useSearchParams();
   const songsParam = searchParams.get("songs");
   const [songs, setSongs] = useState<Song[]>([]);

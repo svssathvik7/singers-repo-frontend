@@ -49,6 +49,7 @@ export default function CreateGenreModal({
           }
         )
       ).data;
+      console.log(response);
 
       setTitle("");
       successAction();

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { X } from "lucide-react";
 import axios from "axios";
 import {
   Dialog,
@@ -63,7 +62,7 @@ export default function AddSongModal({
         throw new Error("User ID not found. Please login again.");
       }
 
-      const response = await axios.post(
+      await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/genres/songs`,
         {
           ...formData,

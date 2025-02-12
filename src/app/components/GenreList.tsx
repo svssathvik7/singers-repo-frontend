@@ -109,8 +109,8 @@ export default function GenreList() {
       {genres.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-12 px-4">
           <p className="text-lg text-gray-600 text-center">
-            You haven't created any genres yet. Start organizing your music by
-            creating your first genre!
+            You haven&apos;t created any genres yet. Start organizing your music
+            by creating your first genre!
           </p>
         </div>
       ) : (
