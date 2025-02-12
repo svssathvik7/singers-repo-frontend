@@ -92,7 +92,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.onClick ? "#" : link.href}
-                onClick={(e) => {
+                onClick={() => {
                   if (link.onClick) {
                     link.onClick();
                   }
