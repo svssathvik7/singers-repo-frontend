@@ -98,7 +98,7 @@ export default function GenreList() {
       <div className="flex justify-between items-center">
         <h1 className="text-3xl font-bold text-black">Your Music Genres</h1>
         <button
-          className="inline-flex items-center px-6 py-3 bg-yellow-400 hover:bg-yellow-500 text-black font-medium rounded-lg transition-colors duration-200 gap-2 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+          className="flex px-2 items-center justify-center flex-wrap bg-[#facc15] rounded-2xl w-[50dvw] md:w-fit"
           onClick={() => setIsModalOpen(true)}
         >
           <Plus className="h-5 w-5" />

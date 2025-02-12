@@ -57,7 +57,7 @@ export default function Auth() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
+    <div className="w-fit h-fit absolute left-0 right-0 top-0 bottom-0 m-auto flex items-center justify-center bg-background">
       <Toaster
         position="top-center"
         toastOptions={{

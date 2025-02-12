@@ -12,13 +12,13 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white pt-4 sm:pt-6">
       {isLoggedIn ? (
-        <div className="p-6 md:p-8">
+        <div className="p-4 sm:p-6 md:p-8">
           <GenreList />
         </div>
       ) : (
-        <div className="flex flex-col items-center justify-center min-h-[80vh] px-4 text-center">
+        <div className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] px-4 text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-4">
             SingersRepo
           </h1>

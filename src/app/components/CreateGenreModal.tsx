@@ -110,10 +110,10 @@ export default function CreateGenreModal({
           <button
             type="submit"
             disabled={isLoading}
-            className={`w-full py-2 px-4 rounded-md text-black font-medium transition-colors duration-200 ${
+            className={`w-full py-2.5 md:py-2 px-5 md:px-4 rounded-md text-black text-sm md:text-base font-medium transition-colors duration-200 ${
               isLoading
                 ? "bg-yellow-200 cursor-not-allowed"
-                : "bg-yellow-400 hover:bg-yellow-500 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                : "bg-yellow-400 hover:bg-yellow-500 shadow-md md:shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
             }`}
           >
             {isLoading ? "Creating..." : "Create Genre"}
