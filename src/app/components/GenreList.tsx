@@ -6,6 +6,7 @@ import axios from "axios";
 import CreateGenreModal from "./CreateGenreModal";
 import toast from "react-hot-toast";
 import AddSongModal from "./AddSongModal";
+import { useRouter } from "next/navigation";
 
 interface Song {
   _id: string;
@@ -28,6 +29,7 @@ interface Genre {
 }
 
 export default function GenreList() {
+  const router = useRouter();
   const [genres, setGenres] = useState<Genre[]>([]);
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -84,6 +86,11 @@ export default function GenreList() {
     );
   }
 
+  const handleGenreClick = (genreId: string, songs: Song[], title: string) => {
+    const encodedData = encodeURIComponent(JSON.stringify({ songs, title }));
+    router.push(`/genre/${genreId}?songs=${encodedData}`);
+  };
+
   return (
     <div className="max-w-7xl mx-auto space-y-6">
       <div className="flex justify-between items-center">
@@ -109,7 +116,10 @@ export default function GenreList() {
           {genres.map((genre) => (
             <div
               key={genre._id}
-              className="bg-white border-2 border-gray-100 rounded-xl p-6 hover:border-yellow-400 transition-all duration-200 shadow-sm hover:shadow-md group"
+              className="bg-white border-2 border-gray-100 rounded-xl p-6 hover:border-yellow-400 transition-all duration-200 shadow-sm hover:shadow-md group cursor-pointer"
+              onClick={() =>
+                handleGenreClick(genre._id, genre.songs, genre.title)
+              }
             >
               <h3 className="text-xl font-semibold text-black group-hover:text-yellow-600 mb-2">
                 {genre.title}
