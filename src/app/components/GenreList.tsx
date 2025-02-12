@@ -34,7 +34,9 @@ export default function GenreList() {
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedGenreId, setSelectedGenreId] = useState<string>("");
-  const [expandedGenreId, setExpandedGenreId] = useState<string>("");
+  const [expandedGenreIds, setExpandedGenreIds] = useState<Set<string>>(
+    new Set()
+  );
   const [isAddSongModalOpen, setIsAddSongModalOpen] = useState(false);
 
   const fetchGenres = async () => {
@@ -126,7 +128,7 @@ export default function GenreList() {
               </h3>
               <p className="text-gray-600 mb-4">{genre.songs.length} songs</p>
               <div className="flex flex-col gap-4">
-                {expandedGenreId === genre._id && genre.songs.length > 0 && (
+                {expandedGenreIds.has(genre._id) && genre.songs.length > 0 && (
                   <div className="space-y-3 mb-4 bg-gray-50 p-4 rounded-lg overflow-y-auto max-h-[300px] scrollbar-thin scrollbar-thumb-yellow-400 scrollbar-track-gray-100">
                     {genre.songs.map((song) => (
                       <div
@@ -170,14 +172,21 @@ export default function GenreList() {
                       Created {new Date(genre.createdAt).toLocaleDateString()}
                     </span>
                     <button
-                      onClick={() =>
-                        setExpandedGenreId(
-                          expandedGenreId === genre._id ? "" : genre._id
-                        )
-                      }
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setExpandedGenreIds((prev) => {
+                          const newSet = new Set(prev);
+                          if (newSet.has(genre._id)) {
+                            newSet.delete(genre._id);
+                          } else {
+                            newSet.add(genre._id);
+                          }
+                          return newSet;
+                        });
+                      }}
                       className="text-yellow-600 hover:text-yellow-700 transition-colors duration-200"
                     >
-                      {expandedGenreId === genre._id
+                      {expandedGenreIds.has(genre._id)
                         ? "Hide Details ↑"
                         : "View Details ↓"}
                     </button>
