@@ -1,13 +1,27 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userId");
+    setIsLoggedIn(false);
+    router.push("/auth");
+  };
 
   const isActive = (path: string) => {
     return pathname === path;
@@ -15,7 +29,11 @@ export default function Navbar() {
 
   const navLinks = [
     { href: "/", label: "Home" },
-    { href: "/auth", label: "Login" },
+    {
+      href: "/auth",
+      label: isLoggedIn ? "Logout" : "Login",
+      onClick: isLoggedIn ? handleLogout : undefined,
+    },
     { href: "#", label: "About" },
   ];
 
@@ -37,7 +55,8 @@ export default function Navbar() {
             {navLinks.map((link) => (
               <Link
                 key={link.href}
-                href={link.href}
+                href={link.onClick ? "#" : link.href}
+                onClick={link.onClick}
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                   isActive(link.href)
                     ? "bg-yellow-400 text-black"
@@ -72,13 +91,18 @@ export default function Navbar() {
             {navLinks.map((link) => (
               <Link
                 key={link.href}
-                href={link.href}
+                href={link.onClick ? "#" : link.href}
+                onClick={(e) => {
+                  if (link.onClick) {
+                    link.onClick();
+                  }
+                  setIsMenuOpen(false);
+                }}
                 className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
                   isActive(link.href)
                     ? "bg-yellow-400 text-black"
                     : "text-black hover:bg-yellow-100"
                 }`}
-                onClick={() => setIsMenuOpen(false)}
               >
                 {link.label}
               </Link>
