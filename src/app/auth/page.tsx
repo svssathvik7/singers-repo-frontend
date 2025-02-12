@@ -40,6 +40,7 @@ export default function Auth() {
       if (response.token) {
         localStorage.setItem("userId", response.userId);
         localStorage.setItem("token", response.token);
+        window.dispatchEvent(new Event("auth-change"));
         toast.success(
           response.message ||
             (isLogin
