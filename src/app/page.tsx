@@ -12,7 +12,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white pt-4 sm:pt-6">
+    <div className="w-fit h-fit absolute left-0 right-0 top-0 bottom-0 m-auto min-h-screen bg-white pt-4 sm:pt-6">
       {isLoggedIn ? (
         <div className="p-4 sm:p-6 md:p-8">
           <GenreList />

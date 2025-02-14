@@ -94,11 +94,11 @@ export default function GenreList() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto space-y-6">
-      <div className="flex justify-between items-center">
+    <div className="container mt-12 mx-auto px-4 py-6 md:py-8 lg:py-10 max-w-[90dvw]">
+      <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold text-black">Your Music Genres</h1>
         <button
-          className="flex px-2 items-center justify-center flex-wrap bg-[#facc15] rounded-2xl w-[50dvw] md:w-fit"
+          className="flex items-center justify-center gap-2 px-4 py-2 bg-[#facc15] rounded-lg hover:bg-yellow-500 transition-colors md:w-auto text-sm md:text-base font-medium"
           onClick={() => setIsModalOpen(true)}
         >
           <Plus className="h-5 w-5" />
